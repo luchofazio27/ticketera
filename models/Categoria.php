@@ -2,7 +2,7 @@
 class Categoria extends Conectar{
     
     public function get_categoria(){
-        $conectar=parent::conexion(); //Instanciamos el motodo "conexion" del archivo conexion.php con un parent(Se utiliza para acceder a un metodo de una clase derivada)!
+        $conectar=parent::conexion(); //Instanciamos el motodo "conexion" del archivo conexion.php con un parent(Se utiliza para acceder a un metodo de una clase derivada)
         parent::set_names();
         $sql ="SELECT * FROM tm_categoria WHERE est=1";
         $sql = $conectar -> prepare($sql); // prepare es una función que prepara una sentencia SQL para ser ejecutada
