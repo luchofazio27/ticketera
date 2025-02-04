@@ -19,7 +19,7 @@ class Usuario extends Conectar{
                     $stmt = $conectar -> prepare($sql); //stmt prepare es una función que prepara una sentencia SQL para ser ejecutada
                     $stmt -> bindValue(1, $correo); // stmt::bindValue es una función que vincula un valor a un marcador de posición en una instrucción SQL
                     $stmt -> bindValue(2, $pass);
-                    $stmt -> execute(); //stmt->execute() es una función que ejecuta una consulta preparada previamente
+                    $stmt -> execute(); //stmt->execute() es una función que ejecuta una consulta preparada previamente // el símbolo -> es un operador que se usa para acceder a las propiedades y métodos de un objeto
                     $resultado = $stmt -> fetch(); //stmt fetch es una función que se utiliza para obtener una fila de resultados de un conjunto de resultados asociado a un objeto PDOStatement
                     if(is_array($resultado) and count($resultado) > 0) { //Preguntamos si devolvio un array y si el resultado es mayor a 0
                         $_SESSION["usu_id"] = $resultado["usu_id"]; //Creamos las variables de session
