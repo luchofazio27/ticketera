@@ -39,7 +39,11 @@ function guardaryeditar(e){
         contentType: false,
         processData: false,
         success: function(datos){
-            console.log(datos);
+            $('#tick_titulo').val(''); // Limpia el campo titul
+            $('#tick_descrip').summernote('reset'); // Limpia el campo descripcion
+            swal("Correcto!", "Registrado Correctamente", "success"); //Swal es un plugin de jQuery que se puede utilizar en PHP para mostrar alertas y notificaciones visuales en una página web
+
+
         }
     });
 }
