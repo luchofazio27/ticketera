@@ -15,6 +15,11 @@ switch($_GET["op"]){ //$_GET es una matriz de variables que se pasan al script a
             $sub_array[] = $row["tick_id"];
             $sub_array[] = $row["cat_nom"];
             $sub_array[] = $row["tick_titulo"];
+            if($row["tick_estado"]=="Abierto"){ // Verificamos el estado del ticket para darle una clase
+                $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
+            } else {
+                $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
+            }
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"])); // Trae la fecha y la hora de cuando se creo el ticket
             $sub_array[] = '<button type="button" onClick="ver('.$row["tick_id"].');" id="'.$row["tick_id"].'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye"></button>'; // onClick="ver('.$row["tick_id"].');": Este es un evento que se ejecutará cuando se haga clic en el botón
             $data[] = $sub_array;
@@ -36,6 +41,11 @@ switch($_GET["op"]){ //$_GET es una matriz de variables que se pasan al script a
                 $sub_array[] = $row["tick_id"];
                 $sub_array[] = $row["cat_nom"];
                 $sub_array[] = $row["tick_titulo"];
+                if($row["tick_estado"]=="Abierto"){ // Verificamos el estado del ticket para darle una clase
+                    $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
+                } else {
+                    $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
+                }
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"])); // Trae la fecha y la hora de cuando se creo el ticket
                 $sub_array[] = '<button type="button" onClick="ver('.$row["tick_id"].');" id="'.$row["tick_id"].'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye"></button>'; // onClick="ver('.$row["tick_id"].');": Este es un evento que se ejecutará cuando se haga clic en el botón
                 $data[] = $sub_array;
