@@ -15,8 +15,10 @@ switch($_GET["op"]){ //$_GET es una matriz de variables que se pasan al script a
             $sub_array[] = $row["tick_id"];
             $sub_array[] = $row["cat_nom"];
             $sub_array[] = $row["tick_titulo"];
-            $sub_array[] = '<button type="button" onClick="ver('.$row["tick_id"].');" id="'.$row["tick_id"].'" class="btn btn-outline-primary btn-icon><div><i class="fa fa-edit"></div></button>'; // onClick="ver('.$row["tick_id"].');": Este es un evento que se ejecutará cuando se haga clic en el botón
-        } 
+            $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"])); // Trae la fecha y la hora de cuando se creo el ticket
+            $sub_array[] = '<button type="button" onClick="ver('.$row["tick_id"].');" id="'.$row["tick_id"].'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye"></button>'; // onClick="ver('.$row["tick_id"].');": Este es un evento que se ejecutará cuando se haga clic en el botón
+            $data[] = $sub_array;
+        };
         
         $results = array(
             "sEcho" => 1,
@@ -25,7 +27,27 @@ switch($_GET["op"]){ //$_GET es una matriz de variables que se pasan al script a
             "aaData"=> $data);
             echo json_encode($results); // Convierte el arreglo en una cadena JSON
         break;    
-        
+    
+        case "listar":
+            $datos = $ticket -> listar_ticket(); //Llama al metodo "listar_ticket" del objeto ticket
+            $data = Array(); // Declaramos un array
+            foreach($datos as $row){ // Recorre la variable datos que tiene el listado de tickets
+                $sub_array = array(); // Se crea un array que almacena el tick id, cat nom, tick titulo.
+                $sub_array[] = $row["tick_id"];
+                $sub_array[] = $row["cat_nom"];
+                $sub_array[] = $row["tick_titulo"];
+                $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_crea"])); // Trae la fecha y la hora de cuando se creo el ticket
+                $sub_array[] = '<button type="button" onClick="ver('.$row["tick_id"].');" id="'.$row["tick_id"].'" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-eye"></button>'; // onClick="ver('.$row["tick_id"].');": Este es un evento que se ejecutará cuando se haga clic en el botón
+                $data[] = $sub_array;
+            };
+            
+            $results = array(
+                "sEcho" => 1,
+                "iTotalRecords" => count($data), // Cuenta cuántos elementos hay en el arreglo
+                "iTotalDisplayRecords" => count($data),
+                "aaData"=> $data);
+                echo json_encode($results); // Convierte el arreglo en una cadena JSON
+            break;        
 }
 
 ?>
