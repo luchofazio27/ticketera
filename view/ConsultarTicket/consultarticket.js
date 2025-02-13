@@ -118,7 +118,7 @@ $(document).ready(function(){
 });
 
 function ver(tick_id){
-    console.log(tick_id);
+    window.open('http://localhost/TICKETERA/view/DetalleTicket/?ID='+tick_id+''); //window.open() en PHP es una función que abre una nueva ventana o pestaña del navegador
 }
 
 init();

@@ -64,7 +64,7 @@ if (isset($_SESSION["usu_id"])) { // Si hay un usuario logueado:
 								</fieldset>
 							</div>
 							<div class="col-lg-12">
-								<button type="submit" name="action" value="add" class="btn btn-rounded btn-inline btn-prumary">Guardar</button>
+								<button type="submit" id="btnguardar" name="action" value="add" class="btn btn-rounded btn-inline btn-prumary">Guardar</button>
 							</div>
 						</form>
 					</div><!--.row-->
