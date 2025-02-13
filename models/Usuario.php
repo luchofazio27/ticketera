@@ -11,20 +11,23 @@ class Usuario extends Conectar{
                  //$_POST es una variable que recolecta los datos que se envían a través del método HTTP POST. Se trata de una variable global, es decir, que está disponible en cualquier parte del script
                  $correo = $_POST["usu_correo"]; // Instancia en una variable el correo que se envia
                  $pass = $_POST["usu_pass"];
+                 $rol = $_POST["rol_id"];
                  if(empty($correo) and empty($pass)) { // Si estan vacios el correo y la pass
                     header("Location:".Conectar::ruta()."index.php?m=2"); //header() envía encabezados HTTP sin formato a un navegador o cliente
                     exit();
                  } else {
-                    $sql = "SELECT * FROM tm_usuarios WHERE usu_correo=? AND usu_pass=? AND est=1"; //$sql es una función que se utiliza para enviar consultas al lenguaje de consulta estructurado (SQL)
+                    $sql = "SELECT * FROM tm_usuarios WHERE usu_correo=? AND usu_pass=? AND rol_id=? AND est=1"; //$sql es una función que se utiliza para enviar consultas al lenguaje de consulta estructurado (SQL)
                     $stmt = $conectar -> prepare($sql); //stmt prepare es una función que prepara una sentencia SQL para ser ejecutada
                     $stmt -> bindValue(1, $correo); // stmt::bindValue es una función que vincula un valor a un marcador de posición en una instrucción SQL
                     $stmt -> bindValue(2, $pass);
+                    $stmt -> bindValue(3, $rol);
                     $stmt -> execute(); //stmt->execute() es una función que ejecuta una consulta preparada previamente // el símbolo -> es un operador que se usa para acceder a las propiedades y métodos de un objeto
                     $resultado = $stmt -> fetch(); //stmt fetch es una función que se utiliza para obtener una fila de resultados de un conjunto de resultados asociado a un objeto PDOStatement
                     if(is_array($resultado) and count($resultado) > 0) { //Preguntamos si devolvio un array y si el resultado es mayor a 0
                         $_SESSION["usu_id"] = $resultado["usu_id"]; //Creamos las variables de session
                         $_SESSION["usu_nom"] = $resultado["usu_nom"];//Respetamos los nombres de las columnas en la DB
                         $_SESSION["usu_ape"] = $resultado["usu_ape"];
+                        $_SESSION["rol_id"] = $resultado["rol_id"];
                         header("Location:".Conectar::ruta()."view/Home/");
                         exit();
                     } else {
