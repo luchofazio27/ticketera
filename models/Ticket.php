@@ -87,10 +87,11 @@ class Ticket extends Conectar
         return $resultado = $sql->fetchAll(); //En PHP, fetchAll() es un método que devuelve un array con todas las filas de un conjunto de resultados. Instanciamos la consulta previa al SQL en la variable resultado
     }
 
-    public function listar_ticket_x_id($tick_id){
-        $conectar= parent::conexion();
+    public function listar_ticket_x_id($tick_id)
+    {
+        $conectar = parent::conexion();
         parent::set_names();
-        $sql="SELECT 
+        $sql = "SELECT 
             tm_ticket.tick_id,
             tm_ticket.usu_id,
             tm_ticket.cat_id,
@@ -108,10 +109,10 @@ class Ticket extends Conectar
             WHERE
             tm_ticket.est = 1
             AND tm_ticket.tick_id = ?";
-        $sql=$conectar->prepare($sql);
+        $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $tick_id);
         $sql->execute();
-        return $resultado=$sql->fetchAll();
+        return $resultado = $sql->fetchAll();
     }
 
     public function insert_ticketdetalle($tick_id, $usu_id, $tickd_descrip)
@@ -123,6 +124,29 @@ class Ticket extends Conectar
         $sql->bindValue(1, $tick_id); // stmt::bindValue es una función que vincula un valor a un marcador de posición en una instrucción SQL
         $sql->bindValue(2, $usu_id);
         $sql->bindValue(3, $tickd_descrip);
+        $sql->execute(); //->execute() es una función que ejecuta una consulta preparada previamente
+        return $resultado = $sql->fetchAll(); //En PHP, fetchAll() es un método que devuelve un array con todas las filas de un conjunto de resultados. Instanciamos la consulta previa al SQL en la variable resultado
+    }
+
+    public function insert_ticketdetalle_cerrar($tick_id, $usu_id)
+    {
+        $conectar = parent::conexion(); //Instanciamos el motodo "conexion" del archivo conexion.php con un parent(Se utiliza para acceder a un metodo de una clase derivada)!
+        parent::set_names();
+        $sql = "INSERT INTO td_ticketdetalle (tickd_id, tick_id, usu_id, tickd_descrip, fech_crea, est) VALUES (NULL, ?, ?, 'Ticket Cerrado...', now(), '1');"; // Consulta a la DB
+        $sql = $conectar->prepare($sql); // prepare es una función que prepara una sentencia SQL para ser ejecutada // el símbolo -> es un operador que se usa para acceder a las propiedades y métodos de un objeto
+        $sql->bindValue(1, $tick_id); // stmt::bindValue es una función que vincula un valor a un marcador de posición en una instrucción SQL
+        $sql->bindValue(2, $usu_id);
+        $sql->execute(); //->execute() es una función que ejecuta una consulta preparada previamente
+        return $resultado = $sql->fetchAll(); //En PHP, fetchAll() es un método que devuelve un array con todas las filas de un conjunto de resultados. Instanciamos la consulta previa al SQL en la variable resultado
+    }
+
+    public function update_ticket($tick_id)
+    {
+        $conectar = parent::conexion(); //Instanciamos el motodo "conexion" del archivo conexion.php con un parent(Se utiliza para acceder a un metodo de una clase derivada)!
+        parent::set_names();
+        $sql = "UPDATE tm_ticket SET tick_estado = 'Cerrado' WHERE tick_id = ?"; // Consulta a la DB
+        $sql = $conectar->prepare($sql); // prepare es una función que prepara una sentencia SQL para ser ejecutada // el símbolo -> es un operador que se usa para acceder a las propiedades y métodos de un objeto
+        $sql->bindValue(1, $tick_id); // stmt::bindValue es una función que vincula un valor a un marcador de posición en una instrucción SQL
         $sql->execute(); //->execute() es una función que ejecuta una consulta preparada previamente
         return $resultado = $sql->fetchAll(); //En PHP, fetchAll() es un método que devuelve un array con todas las filas de un conjunto de resultados. Instanciamos la consulta previa al SQL en la variable resultado
     }

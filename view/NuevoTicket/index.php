@@ -59,7 +59,7 @@ if (isset($_SESSION["usu_id"])) { // Si hay un usuario logueado:
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="tick_descrip">Descripción</label>
 									<div class="summernote-theme-1">
-										<textarea id="tick_descrip" class="summernote" name="tick_descrip" name="name" required></textarea>
+										<textarea id="tick_descrip" class="summernote" name="tick_descrip" name="name"></textarea>
 									</div>
 								</fieldset>
 							</div>

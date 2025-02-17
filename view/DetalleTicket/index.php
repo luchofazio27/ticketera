@@ -76,7 +76,7 @@ if (isset($_SESSION["usu_id"])) { // Si hay un usuario logueado:
 				</section><!--.activity-line-->
 
 
-				<div class="box-typical box-typical-padding">
+				<div class="box-typical box-typical-padding" id="pnldetalle">
 
 					<p>
 						Ingrese duda o consulta
@@ -88,13 +88,13 @@ if (isset($_SESSION["usu_id"])) { // Si hay un usuario logueado:
 							<fieldset class="form-group">
 								<label class="form-label semibold" for="tickd_descrip">Descripción</label>
 								<div class="summernote-theme-1">
-									<textarea id="tickd_descrip" class="summernote" name="tickd_descrip" name="name" required></textarea>
+									<textarea id="tickd_descrip" class="summernote" name="tickd_descrip" name="name"></textarea>
 								</div>
 							</fieldset>
 						</div>
 						<div class="col-lg-12">
 							<button type="button" id="btnenviar" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
-							<button type="button" id="btncerrarticket" class="btn btn-rounded btn-inline btn-danger">Cerrar Ticket</button>
+							<button type="button" id="btncerrarticket" class="btn btn-rounded btn-inline btn-warning">Cerrar Ticket</button>
 						</div>
 
 					</div><!--.row-->

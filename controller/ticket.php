@@ -7,6 +7,10 @@ switch ($_GET["op"]) { //$_GET es una matriz de variables que se pasan al script
     case "insert":
         $ticket->insert_ticket($_POST["usu_id"], $_POST["cat_id"], $_POST["tick_titulo"], $_POST["tick_descrip"]); //La línea de código está llamando al método insert_ticket del objeto $ticket y le pasa cuatro parámetros que se toman de un formulario enviado mediante el método POST
         break;
+    case "update":
+            $ticket->update_ticket($_POST["tick_id"]); //La línea de código está llamando al método update_ticket del objeto $ticket y le pasa un parámetro tick_id
+            $ticket->insert_ticketdetalle_cerrar($_POST["tick_id"], $_POST["usu_id"]);
+            break;    
     case "listar_x_usu":
         $datos = $ticket->listar_ticket_x_usu($_POST["usu_id"]); //Llama al metodo "listar_ticket_x_usu" del objeto ticket y le envia parametros
         $data = array(); // Declaramos un array
@@ -75,7 +79,7 @@ switch ($_GET["op"]) { //$_GET es una matriz de variables que se pasan al script
                     <div class="activity-line-item-user">
                         <div class="activity-line-item-user-photo">
                             <a href="#">
-                                <img src="../../public/img/photo-64-2.jpg" alt="">
+                                <img src="../../public/<?php echo $row['rol_id']?>.jpg" alt="">
                             </a>
                         </div>
                         <div class="activity-line-item-user-name"><?php echo $row['usu_nom'] . ' ' . $row['usu_ape']; ?></div>
@@ -120,6 +124,7 @@ switch ($_GET["op"]) { //$_GET es una matriz de variables que se pasan al script
                 } else {
                     $output["tick_estado"] = '<span class="label label-pill label-danger">Cerrado</span>';
                 };
+                $output["tick_estado_texto"] = $row["tick_estado"];
                 $output["fech_crea"] = date("d:m:Y H:i:s", strtotime($row["fech_crea"]));
                 $output["usu_nom"] = $row["usu_nom"];
                 $output["usu_ape"] = $row["usu_ape"];

@@ -37,7 +37,7 @@ if(isset($_POST["enviar"]) and $_POST["enviar"]=="si"){ //La función isset() ve
                 <form class="sign-box" action="" method="post" id="login_form">
                 <input type="hidden" id="rol_id" name="rol_id" value="1">
                     <div class="sign-avatar">
-                        <img src="public/img/avatar-sign.png" alt="">
+                        <img src="public/1.jpg" alt="" id="imgtipo">
                     </div>
                     <header class="sign-title" id="lbltitulo">Acceso Usuario</header>
 
@@ -84,7 +84,7 @@ if(isset($_POST["enviar"]) and $_POST["enviar"]=="si"){ //La función isset() ve
                             <a href="reset-password.html">Cambiar Contraseña</a>
                         </div>
                         <div class="float-left reset">
-                            <a href="#" id="btnsoporte">Acceso Soporte</a>
+                            <a href="#" id="btnsistemas">Acceso Sistemas</a>
                         </div>
                     </div>
                     <input type="hidden" name="enviar" class="form-control" value="si">

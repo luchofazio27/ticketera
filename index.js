@@ -1,4 +1,5 @@
-function init() {}
+function init(){  
+}
 
 $(document).ready(function () {
   $("#tick_descrip").summernote({
@@ -14,15 +15,17 @@ $(document).ready(function () {
   });
 });
 
-$(document).on("click", "#btnsoporte", function () {
+$(document).on("click", "#btnsistemas", function () {
   if ($("#rol_id").val() == 1) {
-    $("#lbltitulo").html("Acceso Soporte");
-    $("#btnsoporte").html("Acceso Usuario");
+    $("#lbltitulo").html("Acceso Sistemas");
+    $("#btnsistemas").html("Acceso Usuario");
     $("#rol_id").val(2);
+    $("#imgtipo").attr("src","public/2.jpg");
   } else {
     $("#lbltitulo").html("Acceso Usuario");
-    $("#btnsoporte").html("Acceso Soporte");
+    $("#btnsistemas").html("Acceso Sistemas");
     $("#rol_id").val(1);
+    $("#imgtipo").attr("src","public/1.jpg");
   }
 });
 

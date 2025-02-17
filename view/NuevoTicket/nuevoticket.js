@@ -53,7 +53,6 @@ $(document).ready(function() {
 //FormData es una interfaz de JavaScript que facilita la creación de un conjunto de datos para enviar a un servidor usando AJAX.
 //$("#ticket_form")[0]: $("#ticket_form") selecciona el formulario con el ID ticket_form, pero como jQuery devuelve un objeto de tipo jQuery, el [0] es para obtener el primer (y único) elemento real del DOM del formulario (es decir, el formulario HTML puro).
 function guardaryeditar(e) {
-    console.log("Intentando enviar datos...");
   e.preventDefault(); //impide que el formulario se envíe de la manera convencional (es decir, evita la recarga de la página
   var formData = new FormData($("#ticket_form")[0]); //Aquí se está creando un nuevo objeto FormData que contiene todos los datos del formulario ticket_form.
   if (
@@ -61,7 +60,7 @@ function guardaryeditar(e) {
     $("#tick_descrip").summernote("isEmpty") ||
     $("#tick_titulo").val() == ""
   ) {
-    swal("Advertencia!", "ESTAMOS ACA", "warning");
+    swal("Advertencia!", "Campos Vacíos", "warning");
   } else {
     $.ajax({
       url: "../../controller/ticket.php?op=insert",
@@ -75,7 +74,6 @@ function guardaryeditar(e) {
         swal("Correcto!", "Registrado Correctamente", "success"); //Swal es un plugin de jQuery que se puede utilizar en PHP para mostrar alertas y notificaciones visuales en una página web
       },  
     });
-    console.log("saldkfa")
   }
 }
 
